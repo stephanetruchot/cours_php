@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+
     <?php
         $color = 'orange';
         echo '<body style="background-color:'.$color.'">';
 
     ?>
-<body>
+
 
     <?php
     $name = 'Stéphane';
