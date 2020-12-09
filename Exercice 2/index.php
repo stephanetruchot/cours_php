@@ -1,22 +1,28 @@
+<?php
+
+    $pageBackgroundColor = 'orange';
+    $userName = 'Stéphane'
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+
+        body
+        {
+            background-color : <?php echo $pageBackgroundColor; ?>;
+        }
+    </style>
 </head>
 
-
+<body>
     <?php
-        $color = 'orange';
-        echo '<body style="background-color:'.$color.'">';
-
-    ?>
-
-
-    <?php
-    $name = 'Stéphane';
-    echo '<h1> Exercice 2 Salutations '.$name.' </h1>';
+    echo '<h1> Exercice 2 Salutations '.$userName.' </h1>';
     ?>
 
 
