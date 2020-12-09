@@ -1,6 +1,6 @@
 <?php
 
-$admin = false;
+$admin = true;
 
 ?>
 <!DOCTYPE html>
@@ -24,15 +24,27 @@ $admin = false;
 <body>
 
 <?php
-        if ($admin)
+
+        if($admin){
+?>
+
+            <h1>Bonjour Admin ! clique <a href="#">sur ce lien</a> pour gérer le site</h1>
+
+<?php
+
+
+        }else
         {
-            echo '<h1>Bonjour maitre admin</h1></br><a href="https://forums.phpfreaks.com/topic/189020-how-to-change-background-color-using-php-variable/">Clique ici</a>';
+?>
+
+            <p> ERREUR, vous n'êtes pas admin !</p>
+<?php
         }
-        else
-        {
-            echo '<p>Tu hors de ma vue Esclave</p>';
-        }
-    ?>
+?>
+
+
+
+
 
 
 
