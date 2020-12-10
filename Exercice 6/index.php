@@ -13,7 +13,10 @@
 
         <?php
 
-            for($i = 0; $i < 10 ; $i++){
+            // on recupere la taille du tableau avec count()
+            $arrayLenght = count($names);
+
+            for($i = 0; $i < $arrayLenght ; $i++){
                 echo '<li>'.$names[$i].'</li>';
             }
 
