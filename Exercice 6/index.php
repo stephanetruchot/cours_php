@@ -1,6 +1,5 @@
 <?php
     $names = ['Pierre', 'Paul', 'Jacques', 'Kiki', 'Philippe', 'Morgane', 'Marie', 'Anne', 'Murielle', 'Gertrude'];
-    $i = 0;
 ?>
 <!DOCTYPE html>
 <html lang="fr">
