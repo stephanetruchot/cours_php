@@ -6,7 +6,7 @@
     // format vendredi 11 décembre 2020, 15h 21m 30s
 
     //Mettre en francais
-    setlocale(LC_TIME, "fr_FR.UTF8");
+    setlocale(LC_TIME, "fr_FR.UTF8", "fra");
 
     //echo strftime('%Y-%m-%d %H:%M:%S');
 
@@ -18,22 +18,36 @@
 
 
 
-    // exercice 10 -d : créer une variable contenant cette date précise textuelle : "2004-04-16 12:00:00" unix : 1082116800 . le but est d'ajouter 435jours à cette date puis de l'afficher sous le format suivant : "samedi 25 juin 2005, 06h 00m 00s"
+    // exercice 10 -d : créer une variable contenant cette date précise textuelle : "2004-04-16 12:00:00" unix : 1082116800 . le but est d'ajouter 435jours à cette date puis de l'afficher sous le format suivant : "samedi 25 juin 2005, 12h 00m 00s"
 
+    //date de départ sous forme textuelle
     $dateToTransform = "2004-04-16 12:00:00";
 
-    function movingForward($futur){
+    // Convertion de la date initiale en timestamp (pour pouvoir faire des calculs dessus)
+    $dateToTransformTimestamp = strtotime($dateToTransform);
 
-          $date = date_create($futur);
+    //Création d'un nouveau timestamp qui correspond au timestamp initial +435j
+    $newDateTimestamp = $dateToTransformTimestamp + 435 * 24 * 3600;
 
-          date_add($date, date_interval_create_from_date_string('434 days 18 hours'));
-
-          echo date_format($date, 'l d F Y, H\h i\m s\s');
-
-    }
+    // affichage de la nouvelle date en utilisant son timestamp
+    echo strftime('%A %d %B %Y, %Hh %Mm %Ss', $newDateTimestamp);
 
 
-    movingForward($dateToTransform)
+
+
+
+    //function movingForward($futur){
+
+    //      $date = date_create($futur);
+
+    //      date_add($date, date_interval_create_from_date_string('434 days 18 hours'));
+
+    //      echo date_format($date, 'l d F Y, H\h i\m s\s');
+
+    //}
+
+
+    //movingForward($dateToTransform)
 
 
     //$timeSpent = 37584000;
