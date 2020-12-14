@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>BOUTIQUE</h1>
+    <h1>PROFIL</h1>
     <?php
         include 'menu.php';
     ?>

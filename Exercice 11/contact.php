@@ -9,5 +9,8 @@
 </head>
 <body>
     <h1>CONTACT</h1>
+    <?php
+        include 'menu.php';
+    ?>
 </body>
 </html>

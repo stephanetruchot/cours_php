@@ -9,12 +9,8 @@
 </head>
 <body>
     <h1>ACCUEIL</h1>
-    <nav>
-        <ul>
-            <li><a href="index.php">Accueil</a></li>
-            <li><a href="contact.php">Contact</a></li>
-            <li><a href="shop.php">Boutique</a></li>
-        </ul>
-    </nav>
+    <?php
+        include 'menu.php';
+    ?>
 </body>
 </html>
