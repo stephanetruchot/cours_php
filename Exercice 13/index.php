@@ -1,8 +1,34 @@
 <?php
+// 1ere etape : appel des variables
+if  (
+    isset($_POST["firstname"]) &&
+    isset($_POST["name"]) &&
+    isset($_POST["age"])
+    )
+{
+    // 2eme etape : bloc des vérifs (1champ = 1 structure conditionnelle) : consiste pour chaque champ a verifier qu'il contient bien des données valides
 
-$firstName = isset($_POST["firstname"]) ? $_POST['firstname'] : NULL;
-$name = isset($_POST["name"]) ? $_POST['name'] : NULL;
-$age = isset($_POST["age"]) ? $_POST['age'] : NULL;
+    if(mb_strlen($_POST["firstname"]) < 2 || mb_strlen($_POST["firstname"]) > 50){
+        $errors[] = 'Prénom pas bon !';
+    }
+
+    if(mb_strlen($_POST["name"]) < 2 || mb_strlen($_POST["name"]) > 50){
+        $errors[] = 'Nom pas bon !';
+    }
+
+    if(!is_numeric($_POST['age']) || $_POST['age'] < 0 || $_POST['age'] > 150 || !ctype_digit($_POST['age'])) {
+        $errors[] = 'age pas bon !';
+    }
+
+
+    // 3eme étapes : si le formulaire n'a pas d'erreur, on fait les actions post-formulaire
+    if(!isset($errors)){
+
+        // Création du message de succès en mettant la version protégée des données (sinon faille XSS)
+        $successMsg = 'Bonjour' . htmlspecialchars($_POST['firstname']) . ' ' . htmlspecialchars($_POST['name']) . ' , tu as ' . htmlspecialchars($_POST['age']) . ' ans !';
+    }
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -15,37 +41,38 @@ $age = isset($_POST["age"]) ? $_POST['age'] : NULL;
 <body>
 
 <?php
-        $hideErrorMessage = '<p>Votre prénom et votre nom doivent contenir entre 2 et 50 caractères, votre âge doit être compris entre 0 et 150 ans</p>';
 
-        if
-        ((strlen($firstName) > 2 && strlen($firstName) <= 50)&&
-        (strlen($name) > 2 && strlen($name) <= 50)&&
-        (is_numeric($age) && ($age) >= 0 && ($age) <= 150))
-            {
-            exit('Bonjour ' . htmlspecialchars($firstName) . ' ' . htmlspecialchars($name) . ' tu as ' . htmlspecialchars($age) . ' ans ! ');
+            // Si l'array $errors existe, alors on le parcours avec un foreach et on affiche les erreurs qu'il contient
+            if(isset($errors)){
+                foreach($errors as $error){
+                    echo '<p style="color:red";>' . $error . '</p>';
+                }
             }
 
-                else if
-                ((!empty($firstName) && strlen($firstName) < 2 Or strlen($firstName) >= 50) Or
-                (!empty($name) && strlen($name) < 2 Or strlen($name) >= 50)Or
-                (!empty($age) && is_numeric($age) Or ($age) >= 150))
-                    {
-                            echo strip_tags($hideErrorMessage);
-                    }
+            // Si la variable $successMsg existe, alors on l'affiche, sinon on affiche le formulaire dans le else
+            if(isset($successMsg)){
+                echo '<p style="color:green";>' . $successMsg . '</p>';
+            } else {
+?>
+                        <form action="index.php" method="POST">
+                            <label for="firstname"><p>Prénom</p>
+                            <input type="text" name="firstname">
+                            </label>
+                            <label for="name"><p>Nom</p>
+                            <input type="text" name="name">
+                            </label>
+                            <label for="age"><p>Age</p>
+                            <input type="text" name="age">
+                            </label>
+                            <input type="submit">
+                        </form>
+
+<?php
+            }
 ?>
 
 
-        <form action="index.php" method="POST">
-                    <label for="firstname"><p>Prénom</p>
-                    <input type="text" name="firstname">
-                    </label>
-                    <label for="name"><p>Nom</p>
-                    <input type="text" name="name">
-                    </label>
-                    <label for="age"><p>Age</p>
-                    <input type="text" name="age">
-                    </label>
-                    <input type="submit">
-        </form>
+
+
 </body>
 </html>
