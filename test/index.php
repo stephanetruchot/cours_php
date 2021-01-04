@@ -1,21 +1,29 @@
 <?php
 
-// tentative de connexion à la base de données
-try{
-
-$bdd = new PDO('mysql:host=localhost;dbname=cours;charset=utf8', 'root', '');
-
-} catch(Exception $e){
-    // Si la connexion à échouée, le die() stop la page et affiche un message
-    die('problème avec la base de données : ' . $e->getMessage());
-}
-
-$response = $bdd->query('SELECT * FROM fruits');
-
-$fruit = $response->fetch(PDO::FETCH_ASSOC);
+echo '<pre>';
+print_r($_POST);
+echo '</pre>'
 
 echo '<pre>';
-print_r($fruit);
-echo '</pre>';
+print_r($_FILES);
+echo '</pre>'
 
-echo 'la couleur du fruit ' . $fruit['name'] . ' est ' . $fruit['color'];
+?>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="index.php" method="POST" enctype="multipart/form-data">
+
+        <input type="hidden" name="MAX_FILE_SIZE" value="2048000">
+        <input type="file" name="photo" accept="image/jpeg, image/png">
+        <input type="text" name="email">
+        <input type="submit">
+
+    </form>
+</body>
+</html>
